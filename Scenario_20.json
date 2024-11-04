@@ -1,0 +1,159 @@
+{
+  "Parameters": [
+    {
+      "Input_Parameter": "How are you adjusting the building?",
+      "Input_Value": "1"
+    },
+    {
+      "Input_Parameter": "Enter the renovation cost (€/m2):",
+      "Input_Value": "150"
+    },
+    {
+      "Input_Parameter": "Predicted time-span of investment",
+      "Input_Value": "30"
+    },
+    {
+      "Input_Parameter": "Total space for mother with calf (m2)",
+      "Input_Value": "22"
+    },
+    {
+      "Input_Parameter": "Number of cows",
+      "Input_Value": "50"
+    },
+    {
+      "Input_Parameter": "Number of cows with 1 month cow-calf contact",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Number of cows with 2 month cow-calf contact",
+      "Input_Value": "30"
+    },
+    {
+      "Input_Parameter": "Number of cows with 3 month cow-calf contact",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Number of cow-calf contact calves kept for replacement (heifers)",
+      "Input_Value": "10"
+    },
+    {
+      "Input_Parameter": "Milk price <br> (EUR/l)",
+      "Input_Value": "0.55"
+    },
+    {
+      "Input_Parameter": "Additional milk price for cow-calf contact (EUR/l)",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Labour price input (EUR/hour)",
+      "Input_Value": "7.5"
+    },
+    {
+      "Input_Parameter": "Revenue from sold calf (EUR/calf)",
+      "Input_Value": "190"
+    },
+    {
+      "Input_Parameter": "Extra revenue from heavier calf due to cow-calf contact (EUR/calf)",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Average interest rate (%)",
+      "Input_Value": "3"
+    },
+    {
+      "Input_Parameter": "Veterinary costs (EUR/calf)",
+      "Input_Value": "25"
+    },
+    {
+      "Input_Parameter": "Liquid feed cost for calves (EUR/l)",
+      "Input_Value": "0.43"
+    },
+    {
+      "Input_Parameter": "Average milk production (day/l/cow)",
+      "Input_Value": "35"
+    },
+    {
+      "Input_Parameter": "Total milk production - cows in first lactation (l/lactation)",
+      "Input_Value": "8800"
+    },
+    {
+      "Input_Parameter": "Average milk yield loss (l/day/cow) for cow-calf contact cows",
+      "Input_Value": "7.3"
+    },
+    {
+      "Input_Parameter": "Variation in milk yield loss (l/day) for cow-calf contact cows",
+      "Input_Value": "6.6"
+    },
+    {
+      "Input_Parameter": "Current calf mortality rate (1-180d, %)",
+      "Input_Value": "7.1"
+    },
+    {
+      "Input_Parameter": "Current feeding system for calves",
+      "Input_Value": "1"
+    },
+    {
+      "Input_Parameter": "Expected effect on calf mortality rate (%)",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Expected effect on veterinary expenses (EUR/calf)",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Expected impact on labour for feeding (minutes/calf)",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Expected impact on other labour for animal care (minutes/calf)",
+      "Input_Value": "0"
+    },
+    {
+      "Input_Parameter": "Expected impact on milk yield for cows in their 1st lactation (% change)",
+      "Input_Value": "10"
+    }
+  ],
+  "Results": [
+    {
+      "Item": "Housing (€)",
+      "Cost": "154,937",
+      "Benefit": ""
+    },
+    {
+      "Item": "Feeding cost (€)",
+      "Cost": "50,562",
+      "Benefit": ""
+    },
+    {
+      "Item": "Animal welfare price premium for milk (€)",
+      "Cost": "",
+      "Benefit": ""
+    },
+    {
+      "Item": "Labour (€)",
+      "Cost": "",
+      "Benefit": ""
+    },
+    {
+      "Item": "Health (€)",
+      "Cost": "",
+      "Benefit": ""
+    },
+    {
+      "Item": "Sold animals premium (€)",
+      "Cost": "",
+      "Benefit": ""
+    },
+    {
+      "Item": "First lactation yield effect (€)",
+      "Cost": "",
+      "Benefit": "51,442"
+    },
+    {
+      "Item": "Total (€)",
+      "Cost": "<b>205,499<\/b>",
+      "Benefit": "<b>51,442<\/b>"
+    }
+  ],
+  "Cost_Benefit_Ratio": [0.2503]
+}
