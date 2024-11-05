@@ -164,7 +164,7 @@ Laskuri-välilehdellä on seitsemän osiota: kielivalinta, navetta, karjan koko,
     small_change_cost = "Ange kostnaden för små förändringar (€):",
     total_space = "Totalt utrymme för mor med kalv (m2)",
     investment_time = "Förväntad tidsperiod för investeringen",
-    c_r_tab="Operational costs and revenues",
+    c_r_tab="Operativa kostnader och intäkter",
     milkPriceLabel="Mjölkpris (EUR/l)",
     milkAdditionLabel= "Extra mjölkpris för kontakt mellan ko och kalv (EUR/l)", 
     LabourCostLabel="Insats för arbetskostnad (EUR/timme)",
@@ -331,7 +331,11 @@ ui <- fluidPage(
                           h4(uiOutput("c_b_tab1" , style = "text-align: center")),
                           gaugeOutput("gaugeChart"),
                           textOutput("costBenefitRatioText")
-                        
+                          
+                      ),
+                      wellPanel(
+                        #actionButton("save", "Save Parameters"), 
+                        downloadButton("downloadData", "Download Data as JSON")
                       )
                )
              )
@@ -777,7 +781,7 @@ server <- function(input, output, session) {
     req(input$herdSize)
     req(input$Replacement)
     req(input$milkProductionFirstLactating)
-    
+    req(input$VetCost)
     # Create a vector for time from 1 to years of investment as provided by user
     time <- 1:input$years
     # Calculate the depreciation rate for each year
@@ -787,7 +791,7 @@ server <- function(input, output, session) {
     # Building Calculation
     selected_values <- input$checkBuild
     sum_val <- calculate_sum(selected_values)
-    print(sum_val)
+    #print(sum_val)
     withdepreciation <- (sum_val - (sum_val * 0.15*depreciation_rate[input$years])) # selvage value is 15%
 
     total <- withdepreciation
@@ -912,10 +916,12 @@ server <- function(input, output, session) {
       )
     )
  print( result_df)
- print(nrow(result_df))
- print(ncol(result_df))
- print(dim(result_df))
- print( length(result_df))
+# print(nrow(result_df))
+# print(ncol(result_df))
+# print(dim(result_df))
+# print( length(result_df))
+ 
+
 
     # Bold the total cost and benefit
     result_df[nrow(result_df), "Cost"] <- paste0("<b>", result_df[nrow(result_df), "Cost"], "</b>")
@@ -926,6 +932,9 @@ server <- function(input, output, session) {
     return(result_df)
     
   })
+  
+  
+  
   
   output$resultTable <- renderTable({
     result_df()
@@ -963,12 +972,22 @@ server <- function(input, output, session) {
     }
     cbr_text_fi <- paste("Kustannus-hyöty-suhde: ", round(cost_benefit_ratio, 2))
     
+    # Define text for Swidish
+    npv_text_se <- if (net_present_value >= 0) {
+      paste("Nettonuvärde: EUR", format(round(net_present_value, 2), big.mark = ",", scientific = FALSE))
+    } else {
+      paste("Nettonuvärde: -EUR", format(round(abs(net_present_value), 2), big.mark = ",", scientific = FALSE))
+    }
+    cbr_text_se <- paste("Förhållande mellan kostnad och nytta: ", round(cost_benefit_ratio, 2))
+    
     # Choose the appropriate text based on the selected language
     if (lang_selected == "en") {
       result_text <- paste(npv_text_en, "\n", cbr_text_en)
     } else if (lang_selected == "fi") {
       result_text <- paste(npv_text_fi, "\n", cbr_text_fi)
-    } else {
+    } else if (lang_selected == "se") {
+      result_text <- paste(npv_text_se, "\n", cbr_text_se)
+    }else {
       result_text <- "Language not supported"
     }
     
@@ -993,6 +1012,190 @@ server <- function(input, output, session) {
     
     
   })
+  
+  # observeEvent(input$save, {
+
+    # Define a function to get the cost based on input$checkBuild
+    get_cost <- function(checkBuild) {
+      lang <- current_lang()  # Retrieve the actual list from the reactive expression
+      if (checkBuild == 1) {
+        return(lang$renovation_cost)
+      } else if (checkBuild == 2) {
+        return(lang$building_cost)
+      } else if (checkBuild == 3) {
+        return(lang$small_change_cost)
+      } else {
+        return(NULL)
+      }
+    }
+
+
+    # Define a function to get the cost based on input$checkBuild
+    get_InvestmentTime <- function(checkBuild) {
+      lang <- current_lang()  # Retrieve the actual list from the reactive expression
+      if (checkBuild <4) {
+        return(lang$investment_time)
+
+      } else {
+        return(NULL)
+      }
+    }
+
+
+
+    # Define a function to get the cost based on input$checkBuild input
+    get_costInput <- function(checkBuild) {
+      #lang <- current_lang()  # Retrieve the actual list from the reactive expression
+      if (checkBuild == 1) {
+        return(input$barnRen )
+      } else if (checkBuild == 2) {
+        return(input$barnBuild)
+      } else if (checkBuild == 3) {
+        return(input$barnsmallchange)
+      } else {
+        return(NULL)
+      }
+    }
+
+    # Define a function to get the space based on input$checkBuild
+    get_space <- function(checkBuild) {
+      lang <- current_lang()  # Retrieve the actual list from the reactive expression
+      if (checkBuild <3) {
+        return(lang$total_space)
+      } else if (checkBuild == 3) {
+        return("Space (m2) not specified")
+      } else {
+        return(NULL)
+      }
+    }
+
+    # Define a function to get the space based on input$checkBuild
+    get_spaceVariable <- function(checkBuild) {
+      lang <- current_lang()  # Retrieve the actual list from the reactive expression
+      if (checkBuild <3) {
+        return(input$space)
+      } else if (checkBuild == 3) {
+        return("NA")
+      } else {
+        return(NULL)
+      }
+    }
+
+
+
+    
+    # Capture all inputs in a data frame
+    params <- reactive({data.frame(
+      
+      Input_Parameter = c(current_lang()$housing_question,
+                          get_cost(as.numeric(input$checkBuild)),
+                          get_InvestmentTime(as.numeric(input$checkBuild)),
+                          get_space(as.numeric(input$checkBuild)),
+                          current_lang()$herdSizeLabel, 
+                          current_lang()$calfNumberLabel, 
+                          current_lang()$calfNumber1Label, 
+                          current_lang()$calfNumber2Label, 
+                          current_lang()$repalcementLabel, 
+                          current_lang()$milkPriceLabel, 
+                          current_lang()$milkAdditionLabel, 
+                          current_lang()$LabourCostLabel, 
+                          current_lang()$CalfCostLabel, 
+                          current_lang()$extraCalfCostLabel, 
+                          current_lang()$interestLabel, 
+                          current_lang()$VetCostLabel, 
+                          current_lang()$MilkReplacerCostsLabel, 
+                          current_lang()$milkProductionLabel, 
+                          current_lang()$milkProductionLabel1, 
+                          current_lang()$suckledMilkLabel, 
+                          current_lang()$suckledMilkVarLabel, 
+                          current_lang()$mortalityLabel, 
+                          current_lang()$feeding_question, 
+                          current_lang()$mortalityDicreaseLabel, 
+                          current_lang()$vetExpensesLabel, 
+                          current_lang()$labourImpactFeedingLabel, 
+                          current_lang()$labourImpactHealthLabel, 
+                          current_lang()$ImpactMilkLabel), 
+     
+      Input_Value = c(input$checkBuild,
+                      get_costInput(as.numeric(input$checkBuild)), 
+                      input$years,
+                      get_spaceVariable(as.numeric(input$checkBuild)),
+                      input$herdSize,  
+                      input$calfNumber, 
+                      input$calfNumber1,  
+                      input$calfNumber2,  
+                      input$Replacement, 
+                      input$MilkPrice, 
+                      input$MilkAddition, 
+                      input$LabourCost, 
+                      input$CalfCost, 
+                      input$extraCalfCost, 
+                      input$Interest, 
+                      input$VetCost, 
+                      input$MilkReplacerCosts, 
+                      input$milkProduction, 
+                      input$milkProductionFirstLactating, 
+                      input$suckledMilk, 
+                      input$suckledMilkVar,
+                      input$mortality, 
+                      input$checkGroup, 
+                      input$mortalityDicrease, 
+                      input$vetExpenses, ####
+                      input$labourImpactFeeding, 
+                      input$labourImpactHealth, 
+                      input$ImpactMilk),
+      stringsAsFactors = FALSE
+    )
+  })
+    
+
+  # output$downloadData <- downloadHandler(
+  #   filename = function() { "output_data.json" },
+  #   content = function(file) {
+  #     data_list <- list(Parameters = params(), Results= result_df())
+  #     json_data <- jsonlite::toJSON(data_list, pretty = TRUE)
+  #     write(json_data, file)
+  #   }, 
+  #   contentType = "application/json"  # Explicitly setting content type
+  # )
+    
+    output$downloadData <- downloadHandler(
+      filename = function() { "output_data.json" },
+      content = function(file) {
+        # Retrieve data from result_df
+        result_data <- result_df()
+        
+        # Extract Total Costs and Benefits as strings
+        total_cost_str <- result_data[result_data$Item == "Total (€)", "Cost"]
+        total_benefit_str <- result_data[result_data$Item == "Total (€)", "Benefit"]
+        
+        # Remove HTML tags and commas using gsub and convert to numeric
+        total_cost <- as.numeric(gsub("<[^>]+>|,", "", total_cost_str))
+        total_benefit <- as.numeric(gsub("<[^>]+>|,", "", total_benefit_str))
+        
+        # Calculate Cost-Benefit Ratio (CBR) if totals are valid
+        if (!is.na(total_cost) && !is.na(total_benefit) && total_cost != 0) {
+          cbr <- total_benefit / total_cost
+        } else {
+          cbr <- NA
+          warning("Total costs or benefits are missing or invalid, CBR cannot be calculated.")
+        }
+        
+        # Add CBR to the data list
+        data_list <- list(
+          Parameters = params(),
+          Results = result_data,
+          Cost_Benefit_Ratio = cbr  # Adding calculated CBR here
+        )
+        
+        # Convert to JSON format
+        json_data <- jsonlite::toJSON(data_list, pretty = TRUE)
+        
+        # Write to file
+        write(json_data, file)
+      },
+      contentType = "application/json"  # Explicitly setting content type
+    )
 }
 
 # Run the application
