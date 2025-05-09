@@ -8,7 +8,8 @@ library(shinyjs)
 translations <- list(
   en = list(
     title="CowCalfSolutions - economic tool",
-    subtitle="In the CowCalf Solution project, we developed a simple economic simulation tool for farmers who want to implement cow-calf contact. The tool allows producers to simulate cost and benefit options for different management strategies. The tool is not directly applicable to foster cow systems at this stage",
+    subtitle="In the CowCalf Solution project, we developed a simple economic simulation tool for farmers who want to implement cow-calf contact. The tool allows producers to simulate cost and benefit options for different management strategies. The tool is not directly applicable to foster cow systems at this stage.
+    While our tool offers insights into the economic efficiency of cow-calf contact, please note that it has limitations in certain areas, such as simplifications of the cow-calf system and reliance on limited data regarding the effects of extended contact. We recommend using it as a supplementary resource alongside professional farm advisory services",
     tab1_title = "Calculator",
     tab2_title = "User guide",
     select_language = "Select Language",
@@ -40,8 +41,8 @@ translations <- list(
     Milk_Production_Tab="Milk production",
     milkProductionLabel="Average milk production (day/l/cow)",
     milkProductionLabel1="Total milk production - cows in first lactation (l/lactation)",
-    suckledMilkLabel= "Average milk yield loss (l/day/cow) for cow-calf contact cows",
-    suckledMilkVarLabel= "Variation in milk yield loss (l/day) for cow-calf contact cows",
+    suckledMilkLabel= "Average loss of saleable milk (l/day/cow) for cow-calf contact cows",
+    suckledMilkVarLabel= "Variation in the loss of saleable milk (l/day) for cow-calf contact cows",
     other="Other production parameters",
     mortalityLabel= "Current calf mortality rate (1-180d, %)",
     feeding_question="Current feeding system for calves",
@@ -57,6 +58,7 @@ translations <- list(
     c_b_tab1="Cost-benefit ratio (fixed and operational costs)",
     exp1="Enter the number of cows in your adjusted building. Note that you can plan suckling for all or some of the cows",
     exp2="Note that the combined number of cows suckling their calf for 1,2 and 3 month cannot be higher than the total number of cows",
+    exp3="Note that there is significant variability in the loss of saleable milk. Recent studies suggest that this loss can range from 10 to 25 kg per day",
     renovation_tooltip="For detailed cost estimates, consult the architect or construction company",
     Housing_tooltip="Total renovated space needed for cow with calf, including corridors, feeding and milking space",
     Housing1_tooltip="Total space needed for cow with calf, incluiding corridors, feeding and milking space",
@@ -80,7 +82,8 @@ A ratio below one means that the investment will result in a loss, while ratios 
   ),
   fi = list(
     title="CowCalfSolutions - taloustyökalu",
-    subtitle="Kehitimme CowCalf Solution -hankkeessa yksinkertaisen taloudellisen simulointityökalun maidontuottajille, jotka haluavat aloittaa vasikoiden pidemmän vierihoidon oman emän kanssa. Työkalun avulla tuottajat voivat simuloida kustannuksia ja hyötyjä erilaisissa vierihoitoratkaisuissa. Työkalua ei tässä vaiheessa voida suoraan soveltaa imettäjälehmäjärjestelmiin",
+    subtitle="Kehitimme CowCalf Solution -hankkeessa yksinkertaisen taloudellisen simulointityökalun maidontuottajille, jotka haluavat aloittaa vasikoiden pidemmän vierihoidon oman emän kanssa. Työkalun avulla tuottajat voivat simuloida kustannuksia ja hyötyjä erilaisissa vierihoitoratkaisuissa. Työkalua ei tässä vaiheessa voida suoraan soveltaa imettäjälehmäjärjestelmiin.
+    Tämä työkalu tarjoaa yhden näkökulman vierihoidon taloudellisuuteen. Työkalussa on kuitenkin rajoitteita, esimerkiksi vierihoitoon liittyviä järjestelyitä on yksinkertaistettu. Tutkittua tietoa vierihoidon pitkäaikaisista vaikutuksista on vielä vähän saatavilla, joten laskelmiin liittyy epävarmuutta. Suosittelemmekin käyttämään työkalua yhdessä muiden asiantuntijapalveluiden kanssa.",
     tab1_title = "Laskuri",
     tab2_title = "Käyttöopas",
     select_language = "Valitse kieli",
@@ -129,6 +132,7 @@ A ratio below one means that the investment will result in a loss, while ratios 
     c_b_tab1="Kustannus-hyötysuhde (kiinteät ja toimintakustannukset)",
     exp1="Syötä mukautetun rakennuksen lehmien lukumäärä. Muistutetaan, että kaikkien lehmien ei tarvitse olla lehmä-vasikka-kontaktijärjestelmässä.",
     exp2="Huomaa, että vasikkaansa 1-, 2- tai 3 kuukautta vierihoitavien lehmien yhteenlaskettu määrä ei voi ylittää lehmien kokonaismäärää",
+    exp3="Huomioi, että lypsettäväksi jäävän maidon määrässä voi olla hyvin suurta vaihtelua. Viimeaikaisissa tutkimuksissa ero vierihoitavien ja tavanomaisesti hoidettavien lehmien välillä on ollut 10-25 kg/pv.",
     renovation_tooltip="Tarkempien arvioiden saamiseksi konsultoi suunnitteluyritystä tai urakoitsijaa",
     Housing_tooltip="Lehmän ja vasikan tarvitsema uudistettu kokonaistila, käytävät, ruokinta- ja lypsytila mukaan luettuina.", ##Check
     Housing1_tooltip="Lehmän ja vasikan tarvitsema kokonaistila, mukaan lukien käytävät, ruokinta- ja lypsytila", ##Check
@@ -199,6 +203,7 @@ Laskuri-välilehdellä on seitsemän osiota: kielivalinta, navetta, karjan koko,
     c_b_tab1="Kostnadsnyttoförhållande (fasta kostnader och driftskostnader)",
     exp1="Ange antalet kor i din justerade byggnad. Observera att du kan planera amning för alla eller några av korna",
     exp2="Observera att det sammanlagda antalet kor som diar sin kalv under 1, 2 och 3 månader inte får vara högre än det totala antalet kor",
+    exp3="",
     renovation_tooltip="För detaljerade kostnadsberäkningar, kontakta arkitekten eller byggföretaget",
     Housing_tooltip="Totalt renoverat utrymme som behövs för ko med kalv, inklusive korridorer, utfodrings- och mjölkningsutrymme",
     Housing1_tooltip="Totalt utrymme som behövs för ko med kalv, inklusive korridorer, utfodrings- och mjölkningsutrymme",
@@ -378,7 +383,7 @@ server <- function(input, output, session) {
 
 
 ####################################################################
-####Hear mostly language change and parameters baisc valeus  ######
+####Hear mostly language change and parameters basic values  ######
 #####################################################################
 
   # Reactive expression to get the selected language's translations
@@ -591,8 +596,12 @@ server <- function(input, output, session) {
   })
 
   output$dynamicsuckledMilk<- renderUI({
-    numericInput("suckledMilk",label= current_lang()$suckledMilkLabel,  value = 7.3)
-  })
+    numericInput("suckledMilk",label= tagList(current_lang()$suckledMilkLabel, tags$span(
+      tags$i(class = "fa fa-info-circle"),  # info-circle icon
+      title = current_lang()$exp3
+    )),  value = 7.3)
+  }) 
+  
   output$dynamicsuckledMilkVar<- renderUI({
     numericInput("suckledMilkVar",label= current_lang()$suckledMilkVarLabel,  value = 6.6)
   })
