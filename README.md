@@ -1,3 +1,16 @@
+# Repository Overview
+
+This repository contains the following files and directories:
+
+| Filename              | Description                                                          |
+|:----------------------|:---------------------------------------------------------------------|
+| app.R                 | Core script for running the economic simulation tool.                |
+| Scenario_Nr.json      | JSON files for each scenario used in the study.                      |
+| LICENSE               | Information concerning license                                       |
+| README.md             | High-level overview of the repository and file descriptions.         |
+| scenario_metadata.xlsx| Metadata of all variables used in each scenario.                     |
+| www/                  | Graphics used in the tool                                            |
+
 # CowCalfApp
 
 Economic simulation tool for farmers who want to implement cow-calf contact. The tool allows producers to simulate cost and benefit options for different management strategies.
