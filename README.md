@@ -9,8 +9,10 @@ This repository contains the following files and directories:
 | Scenario_Nr.json      | JSON files for each scenario used in the study.                      |
 | scenario_metadata.xlsx| Metadata of all variables used in each scenario.                     |
 | www/                  | Directory with graphics used in the tool                             |
+| CowCalfApp.Rproj      | Settings and preferences specific to a R project in RStudio          |
 | build.sh              | Exports app into a GitHub Pages directory to update the hosted site  |
 | LICENSE               | Copyright information                                                |
+
 # CowCalfApp
 
 Economic simulation tool for farmers who want to implement cow-calf contact. The tool allows producers to simulate cost and benefit options for different management strategies.
