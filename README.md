@@ -10,7 +10,7 @@ This repository contains the following files and directories:
 | scenario_metadata.xlsx| Metadata of all variables used in each scenario.                     |
 | www/                  | Directory with graphics used in the tool                             |
 | build.sh              | Exports app into a GitHub Pages directory to update the hosted site  |
-| LICENSE               | Information concerning license                                       |
+| LICENSE               | Copyright information                                                |
 # CowCalfApp
 
 Economic simulation tool for farmers who want to implement cow-calf contact. The tool allows producers to simulate cost and benefit options for different management strategies.
