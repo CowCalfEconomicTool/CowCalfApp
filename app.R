@@ -903,25 +903,25 @@ server <- function(input, output, session) {
     result_df <- data.frame(
       "Item" = lang_items,
       "Cost" = c(
-        ifelse(total > 0, format(round(total), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_feeding > 0, format(round(net_present_cost_feeding), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_MilkBenefit > 0, format(round(net_present_cost_MilkBenefit), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_LabourFeeding > 0, format(round(net_present_cost_LabourFeeding), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_AnimalHealth > 0, format(round(net_present_cost_AnimalHealth), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_SoldAnimals > 0, format(round(net_present_cost_SoldAnimals), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_heiferBenefit > 0, format(round(net_present_cost_heiferBenefit), big.mark = ",", scientific = FALSE), ""),
-        ifelse(total_cost > 0, format(total_cost, big.mark = ",", scientific = FALSE), "")  # Total cost
+        ifelse(total > 0, format(round(total), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_feeding > 0, format(round(net_present_cost_feeding), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_MilkBenefit > 0, format(round(net_present_cost_MilkBenefit), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_LabourFeeding > 0, format(round(net_present_cost_LabourFeeding), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_AnimalHealth > 0, format(round(net_present_cost_AnimalHealth), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_SoldAnimals > 0, format(round(net_present_cost_SoldAnimals), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_heiferBenefit > 0, format(round(net_present_cost_heiferBenefit), big.mark = " ", scientific = FALSE), ""),
+        ifelse(total_cost > 0, format(total_cost, big.mark = " ", scientific = FALSE), "")  # Total cost
 
       ),
       "Benefit" = c(
-        ifelse(total < 0, format(total, big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_feeding < 0, format(abs(round(net_present_cost_feeding)), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_MilkBenefit < 0, format(abs(round(net_present_cost_MilkBenefit)), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_LabourFeeding < 0, format(abs(round(net_present_cost_LabourFeeding)), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_AnimalHealth < 0, format(abs(round(net_present_cost_AnimalHealth)), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_SoldAnimals < 0, format(abs(round(net_present_cost_SoldAnimals)), big.mark = ",", scientific = FALSE), ""),
-        ifelse(net_present_cost_heiferBenefit < 0, format(abs(round(net_present_cost_heiferBenefit)), big.mark = ",", scientific = FALSE), ""),
-        ifelse(total_cost > 0,format(total_benefit, big.mark = ",", scientific = FALSE), "")    # Total benefit
+        ifelse(total < 0, format(total, big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_feeding < 0, format(abs(round(net_present_cost_feeding)), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_MilkBenefit < 0, format(abs(round(net_present_cost_MilkBenefit)), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_LabourFeeding < 0, format(abs(round(net_present_cost_LabourFeeding)), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_AnimalHealth < 0, format(abs(round(net_present_cost_AnimalHealth)), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_SoldAnimals < 0, format(abs(round(net_present_cost_SoldAnimals)), big.mark = " ", scientific = FALSE), ""),
+        ifelse(net_present_cost_heiferBenefit < 0, format(abs(round(net_present_cost_heiferBenefit)), big.mark = " ", scientific = FALSE), ""),
+        ifelse(total_cost > 0,format(total_benefit, big.mark = " ", scientific = FALSE), "")    # Total benefit
       )
     )
  print( result_df)
@@ -954,8 +954,8 @@ server <- function(input, output, session) {
   output$costBenefitRatioText <- renderText({
     df <- result_df()[1:7,]
     # Convert cost and benefit columns from comma-separated text to numeric
-    total_cost <- sum(as.numeric(gsub(",", "", df[1:7, 2])), na.rm = TRUE)
-    total_benefit <- sum(as.numeric(gsub(",", "", df[1:7, 3])), na.rm = TRUE)
+    total_cost <- sum(as.numeric(gsub(" ", "", df[1:7, 2])), na.rm = TRUE)
+    total_benefit <- sum(as.numeric(gsub(" ", "", df[1:7, 3])), na.rm = TRUE)
     # Calculate net present value (NPV)
     net_present_value <- total_benefit - total_cost
 
@@ -967,25 +967,25 @@ server <- function(input, output, session) {
 
     # Define text for English
     npv_text_en <- if (net_present_value >= 0) {
-      paste("Net Present Value (NPV): EUR", format(round(net_present_value, 2), big.mark = ",", scientific = FALSE))
+      paste("Net Present Value (NPV): EUR", format(round(net_present_value, 2), big.mark = " ", scientific = FALSE))
     } else {
-      paste("Net Present Value (NPV): -EUR", format(round(abs(net_present_value), 2), big.mark = ",", scientific = FALSE))
+      paste("Net Present Value (NPV): -EUR", format(round(abs(net_present_value), 2), big.mark = " ", scientific = FALSE))
     }
     cbr_text_en <- paste("Cost-Benefit Ratio: ", round(cost_benefit_ratio, 2))
 
     # Define text for Finnish
     npv_text_fi <- if (net_present_value >= 0) {
-      paste("Nykyarvo (NPV): EUR", format(round(net_present_value, 2), big.mark = ",", scientific = FALSE))
+      paste("Nykyarvo (NPV): EUR", format(round(net_present_value, 2), big.mark = " ", scientific = FALSE))
     } else {
-      paste("Nykyarvo (NPV): -EUR", format(round(abs(net_present_value), 2), big.mark = ",", scientific = FALSE))
+      paste("Nykyarvo (NPV): -EUR", format(round(abs(net_present_value), 2), big.mark = " ", scientific = FALSE))
     }
     cbr_text_fi <- paste("Kustannus-hyöty-suhde: ", round(cost_benefit_ratio, 2))
 
     # Define text for Swidish
     npv_text_se <- if (net_present_value >= 0) {
-      paste("Nettonuvärde: EUR", format(round(net_present_value, 2), big.mark = ",", scientific = FALSE))
+      paste("Nettonuvärde: EUR", format(round(net_present_value, 2), big.mark = " ", scientific = FALSE))
     } else {
-      paste("Nettonuvärde: -EUR", format(round(abs(net_present_value), 2), big.mark = ",", scientific = FALSE))
+      paste("Nettonuvärde: -EUR", format(round(abs(net_present_value), 2), big.mark = " ", scientific = FALSE))
     }
     cbr_text_se <- paste("Förhållande mellan kostnad och nytta: ", round(cost_benefit_ratio, 2))
 
@@ -1006,8 +1006,8 @@ server <- function(input, output, session) {
 
   output$gaugeChart <- renderGauge({
     df <- result_df()[1:7,]
-    total_cost <- sum(as.numeric(gsub(",", "",df[,2])), na.rm = TRUE)
-    total_benefit <- abs(sum(as.numeric(gsub(",", "", df[,3])), na.rm = TRUE))
+    total_cost <- sum(as.numeric(gsub(" ", "",df[,2])), na.rm = TRUE)
+    total_benefit <- abs(sum(as.numeric(gsub(" ", "", df[,3])), na.rm = TRUE))
 
     # Calculate cost-benefit ratio
     cost_benefit_ratio <- ifelse(abs(total_cost) > 0, total_benefit / total_cost, 0)
@@ -1179,8 +1179,8 @@ server <- function(input, output, session) {
         total_benefit_str <- result_data[result_data$Item == "Total (€)", "Benefit"]
 
         # Remove HTML tags and commas using gsub and convert to numeric
-        total_cost <- as.numeric(gsub("<[^>]+>|,", "", total_cost_str))
-        total_benefit <- as.numeric(gsub("<[^>]+>|,", "", total_benefit_str))
+        total_cost <- as.numeric(gsub("<[^>]+>| ", "", total_cost_str))
+        total_benefit <- as.numeric(gsub("<[^>]+>| ", "", total_benefit_str))
 
         # Calculate Cost-Benefit Ratio (CBR) if totals are valid
         if (!is.na(total_cost) && !is.na(total_benefit) && total_cost != 0) {
