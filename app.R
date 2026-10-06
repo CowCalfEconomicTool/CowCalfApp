@@ -222,6 +222,80 @@ Grundvärdet för mängden extra mjölk som kalven suger i sig baseras på litte
 En kvot under ett innebär att investeringen kommer att resultera i en förlust, medan kvoter över ett indikerar att producenten kan förvänta sig att göra en vinst från övergången till långvarig kontakt mellan ko och kalv. Verktyget bör i första hand användas som en simulator, där produktionsparametrarna justeras för att undersöka olika alternativ (t.ex. genom att öka den beräknade förlusten av såld mjölk med en liter eller genom att beräkna en uppskattning av förändringen i kalvdödlighet eller arbete i samband med utfodring). Verktyget gör det möjligt för producenten att fatta mer välgrundade beslut om införande och form av kontakt mellan ko och kalv. Det är också bra att rådfråga en rad experter, t.ex. en veterinär som känner till besättningen, en lantbruksrådgivare och en byggnadsarkitekt, för att få hjälp med att fatta det slutliga beslutet.",
     guidetext2a=" Kontakta vårt team ",
     guidetext2="- Verktygsutvecklare: anna.stygar@luke.fi<br>- Användarhandbok: mikaela.mughal@luke.fi<br>- Projektkoordinator: matti.pastell@luke.fi"
+  ),
+  
+  es = list(
+    title="CowCalfSolutions – majandustööriist",
+    subtitle="CowCalf Solutioni projektis töötasime välja lihtsa majandusliku simulatsioonitööriista põllumajandustootjatele, kes soovivad rakendada lehma ja vasika kooskasvatamist. Tööriist võimaldab tootjatel simuleerida erinevate pidamisstrateegiate kulusid ja tulusid. Praeguses etapis ei saa tööriista ammlehmade süsteemidele otseselt rakendada.
+    Kuigi meie tööriist annab ülevaate lehma ja vasika kooskasvatamise majanduslikust efektiivsusest, tuleb arvestada selle piirangutega, nagu lehma-vasika kasvatusmeetodi lihtsustatud käsitlus ja piiratud andmed pikendatud kontakti mõju kohta. Soovitame kasutada seda täiendava abivahendina ja koos professionaalse nõustamisteenusega",
+    tab1_title = "Kalkulaator",
+    tab2_title = "Kasutusjuhend",
+    select_language = "Valige keel",
+    housing_tab="Pidamistingimused",
+    housing_question = "Kuidas te oma lauta kohandate?",
+    housing_1 = "Renoveerin olemasoleva hoone",
+    housing_2 = "Ehitan uue hoone",
+    housing_3 = "Teen olemasolevates laudaruumides väikeseid muudatusi ja tean/oskan hinnata nende kogumaksumust",
+    renovation_cost = "Sisestage renoveerimiskulu (€/m2):",
+    building_cost = "Sisestage ehituskulu (€/m2):",
+    small_change_cost = "Sisestage väikeste muudatuste kulu (€):",
+    total_space = "Lehma ja vasika kogupindala (m2)",
+    investment_time = "Investeeringu eeldatav kestus",
+    c_r_tab="Tegevuskulud ja tulud",
+    milkPriceLabel="Piima hind <br> (EUR/l)",
+    milkAdditionLabel="Lehma ja vasika kontakti eest makstav piima lisahind (EUR/l)",
+    LabourCostLabel="Tööjõukulu (EUR/tund)",
+    CalfCostLabel="Müüdud vasikast saadav tulu (EUR/vasikas)",
+    extraCalfCostLabel="Lehma ja vasika kooskasvatamise tõttu raskema vasika eest saadav lisatulu (EUR/vasikas)",
+    interestLabel="Keskmine intressimäär (%)",
+    VetCostLabel="Veterinaarkulud (EUR/vasikas)",
+    MilkReplacerCostsLabel="Vasikate vedelsööda kulu (EUR/l)",
+    Herd_Size_Tab="Karja suurus",
+    herdSizeLabel= "Lehmade arv",
+    calfNumberLabel="Lehmade arv, keda peetakse vasikaga koos 1 kuu",
+    calfNumber1Label="Lehmade arv, keda peetakse vasikaga koos 2 kuud",
+    calfNumber2Label="Lehmade arv, keda peetakse vasikaga koos 3 kuud",
+    repalcementLabel="Karja täienduseks jäetavate vasikate arv (lehmikud)",
+    Milk_Production_Tab="Piimatoodang",
+    milkProductionLabel="Keskmine piimatoodang (l/päev/lehm)",
+    milkProductionLabel1="Esimesel laktatsioonil olevate lehmade piimatoodang (l/laktatsioon)",
+    suckledMilkLabel= "Vasikaga koospeetava lehma müügipiima keskmine kadu (l/päev/lehm)",
+    suckledMilkVarLabel= "Vasikaga koospeetavate lehmade müügipiima kao varieeruvus (l/päev)",
+    other="Vasikate näitajad praeguses pidamissüsteemis",
+    mortalityLabel= "Vasikate suremus (1–180 päeva, %)",
+    feeding_question="Vasikate söötmissüsteem",
+    feeding_1="Vedelsööt (nt piimaasendaja)",
+    feeding_2="Täispiim (oma ettevõttest)",
+    production_Label="Lehma ja vasika kooskasvatamise eeldatav mõju",
+    mortalityDicreaseLabel= "Mõju vasikate suremusele (%)",
+    vetExpensesLabel = "Mõju veterinaarkuludele (EUR/vasikas)",
+    labourImpactFeedingLabel = "Mõju söötmisega seotud töömahule (minutit/vasikas)",
+    labourImpactHealthLabel = "Mõju muule loomade kasvatamisega seotud tööle (minutit/vasikas)",
+    ImpactMilkLabel="Mõju esimese laktatsiooni lehmade piimatoodangule (muutuse %)",
+    c_b_tab="Tasuvusanalüüsi tulemused",
+    c_b_tab1="Tulude ja kulude suhe (püsi- ja tegevuskulud)",
+    exp1="Sisestage kohandatud laudahoones peetavate lehmade arv. Arvestage, et saate kavandada vasikate kooskasvatamist kõigi või ainult osade lehmade puhul",
+    exp2="Arvestage, et 1, 2 ja 3 kuud vasikat imetavate lehmade koguarv ei tohi ületada lehmade koguarvu",
+    exp3="Arvestage, et müügipiima kadu varieerub märkimisväärselt. Hiljutiste uuringute kohaselt võib see olla 10–25 kg päevas",
+    renovation_tooltip="Täpsema kuluprognoosi saamiseks pidage nõu arhitekti või ehitusettevõttega",
+    Housing_tooltip="Lehma ja vasika kooskasvatamise jaoks vajalik renoveeritav kogupindala, sealhulgas koridorid ning söötmis- ja lüpsiala",
+    Housing1_tooltip="Lehma ja vasika kooskasvatamise jaoks vajalik kogupindala, sealhulgas koridorid ning söötmis- ja lüpsiala",
+    guidetext1a="Kalkulaatori ülesehitus",
+    guidetext1="Kõigil tööriista väljadel on vaikeväärtused, mida saab konkreetse ettevõtte tingimuste järgi muuta. Vaikeväärtused põhinevad statistikal, praegusel teaduskirjandusel või lehma ja vasika kooskasvatamist praktiseerivate ettevõtete ning katselautade kogemustel. Kuna pikendatud lehma ja vasika kooskasvatamise mõju, eriti tootmisnäitajatele, on vähe uuritud, siis usaldusväärsete andmete puudumisel on vaikeväärtuseks määratud null. Lisaks on igas ettevõttes erinevad nii tootmistingimused kui ka loomad. Seetõttu peab kasutaja kõiki oma ettevõtte kohta sisestatud arve kontrollima ja vajadusel kohandama.
+Näiteks põhineb vasika poolt tarbitava lisapiima kogus kirjandusallikatest pärit hinnangutel, kuid sõltub suuresti ka vasika söötmisest enne kooskasvatamist ning erineb loomati märkimisväärselt. Enamiku nii positiivsete kui ka negatiivsete mõjude avaldumine sõltub ettevõtte lähteolukorrast ja valitud kooskasvatamise korraldusest. Parima tulemuse annavad tootja enda sisendväärtused, mis põhinevad ettevõttes tehtud mõõtmistel ja põhjendatud hinnangutel.
+<br>Kalkulaatori vahekaardil on seitse osa: keele valik, pidamistingimused, karja suurus, tegevuskulud ja tulud, piimatoodang ning mõju tootmisele.<br> Arvutuse tulemused kuvatakse kaheksandas osas tasuvustabelina. Allpool kirjeldatakse lühidalt kasutaja täidetavaid välju ja kalkulaatori tulemuste osa.",
+    Guide1Table="Kasutaja saab valida tööriista soome-, rootsi- või ingliskeelse versiooni.",
+    Guide2Table="Pidamistingimuste puhul saab kasutaja tööriista sisestada oma vajaduste järgi erinevad kulud, mis on seotud laudaruumide kohandamisega (väikesed muudatused, renoveerimine ja uusehitus).<br> Väikeste ehitusmuudatuste maksumust saab hinnata tootja ise, kuid renoveerimise või uue hoone puhul võib täpsema kuluprognoosi saamiseks olla kasulik pöörduda kutselise projekteerija poole.",
+    Guide3Table="Tööriist võimaldab tootjal määrata soovitud tootmistingimused: lehmade koguarvu tootmisaastal, lehmaga kooskasvatatavate vasikate arvu ning lehma ja vasika kooskasvatamise kestuse kuudes (1, 2 või 3).<br> Vaikimisi on kasutatud järgmist näidet. Ettevõttes on 50 lehma. Tootja eeldab, et 30 lehma peetakse koos oma vasikaga 2 kuud. Kümme lehmikut jäetakse ettevõttesse karja täienduseks.",
+    Guide4Table="Kasutaja saab määrata nii hinna- kui ka tulunäitajad, näiteks piima hinna ja müüdud vasikast saadava tulu. Tööriist võimaldab arvesse võtta ka praegust või tulevast loomade heaolu tagavate kõrgemate standardite hinnalisa, näiteks võimalikku lisatulu sellise ettevõtte piima või liha eest, kus loomade heaolu on parandatud lehma ja vasika kooskasvatamise tulemusena.",
+    Guide5Table="Siin saab kasutaja sisestada lehmade keskmise päevatoodangu. Vasika imetud lisapiima koguse vaikeväärtus põhineb kirjandusandmetel, kuid kasutaja saab ka seda näitajat ise muuta. ",
+    Guide6Table="Siin saab kasutaja määrata vasikate suremuse (1.–180. päeval) ja praeguse söötmisstrateegia (vedelsööt või oma ettevõtte täispiim). ",
+    Guide7Table="Vaikimisi on mõju sellistele tootmisnäitajatele nagu vasikate suremus, veterinaarkulud ning söötmise ja loomade hooldamise töömaht seatud nulliks. Küsimustikes ja intervjuudes on mitu tootjat teatanud, et lehma ja vasika koooskasvatamine vähendab loomade hooldamisele kuluvat aega. Hästi korraldatud pidamine võib loomade tervist ka parandada. On tõendatud, et suur piimatarbimine enne võõrutamist suurendab hilisemat piimatoodangut, eriti esimesel laktatsioonil, mistõttu on see mõju samuti kalkulaatorisse lisatud.",
+    Guide8Table="Eraldi tabelis kuvatakse kulude ja tulude tulemused kategooriate kaupa. Samuti arvutatakse tulude ja kulude suhe.
+Ühest väiksem suhtarv tähendab, et investeering toob kahjumit, ühest suurem suhtarv aga näitab, et tootja võib lehma ja vasika koooskasvatamisele üleminekul kasumit oodata. Tööriista tuleks kasutada eelkõige simulaatorina, kohandades tootmisnäitajaid erinevate võimaluste uurimiseks (näiteks suurendades müügipiima hinnangulist kadu ühe liitri võrra või arvutades vasikate suremuse või söötmisega seotud töö muutuse hinnangu). Tööriist aitab tootjal teha teadlikumaid otsuseid lehma ja vasika kooskasvatamise kasutuselevõtu ja korralduse kohta. Lõpliku otsuse tegemisel tasub pidada nõu ka mitmesuguste asjatundjatega, näiteks karja tundva veterinaararsti, põllumajandusnõustaja ja hoone projekteerijaga.",
+    guidetext2a="Võtke meiega ühendust",
+    guidetext2="- Tööriista arendaja: anna.stygar@luke.fi<br>- Kasutusjuhend: mikaela.mughal@luke.fi<br>- Projekti koordinaator: matti.pastell@luke.fi"
+    
   )
 
 )
@@ -237,7 +311,10 @@ item_names <- list(
          "Terveys (€)", "Myydyt eläimet palkkio (€)", "Vaikutuksen ensikkokauden tuotokseen (€)",  "Yhteensä (€)"),
   se = c("Boende (€)", "Foderkostnad (€)",
          "Prispremie för djurskydd för mjölk (€)", "Arbetskraft (€)",
-         "Hälsa (€)", "Premie för sålda djur (€)", "Avkastningseffekt första laktationen (€)", "Totalt (€)" )
+         "Hälsa (€)", "Premie för sålda djur (€)", "Avkastningseffekt första laktationen (€)", "Totalt (€)" ),
+  es=c("Pidamistingimused (€)", "Söötmine (€)",
+                "Loomade heaolu eest makstav piima hinnalisa (€)", "Tööjõukulu (€)",
+                "Tervis (€)", "Müüdud loomade hinnalisa (€)", "Esimese laktatsiooni toodangu mõju (€)",  "Kokku (€)" )
 
 )
 #
@@ -245,7 +322,8 @@ item_names <- list(
 column_names <- list(
   en = c("Item", "Cost", "Benefit"),
   fi = c("Tuote", "Kustannus", "Hyöty"),
-  se = c("Föremål", "Kostnad", "Förmån")
+  se = c("Föremål", "Kostnad", "Förmån"),
+  es=c("Näitaja", "Kulu", "Tulu")
 )
 #######################################################################h###############
 
@@ -266,7 +344,7 @@ ui <- fluidPage(
                column(3,  # Left sidebar for the first set of inputs
                       wellPanel(
                         uiOutput("language_label"),  # Dynamic label for language
-                        selectInput("lang", "", choices = c("Suomi" = "fi", "Svenska"="se", "English" = "en"))
+                        selectInput("lang", "", choices = c("Suomi" = "fi", "Svenska"="se", "English" = "en", "Estonian"="es"))
                       ),
                       wellPanel(
                         uiOutput("housing_tab", style = "text-align: center"),
@@ -742,7 +820,8 @@ server <- function(input, output, session) {
       current_lang()$select_language,
       tags$img(src = "Fi_flag.png", width = 20, height = 13),
       tags$img(src = "Se_flag.png", width = 20, height = 13),
-      tags$img(src = "En_flag.png", width = 20, height = 13),style = "text-align: center"
+      tags$img(src = "En_flag.png", width = 20, height = 13),
+      tags$img(src = "ES_flag.png", width = 20, height = 13),style = "text-align: center"
    # label <- current_lang()$select_language  # Get the translated label
 
     )
@@ -988,7 +1067,15 @@ server <- function(input, output, session) {
       paste("Nettonuvärde: -EUR", format(round(abs(net_present_value), 2), big.mark = " ", scientific = FALSE))
     }
     cbr_text_se <- paste("Förhållande mellan kostnad och nytta: ", round(cost_benefit_ratio, 2))
-
+    
+    # Define text for Estonian
+    npv_text_es <- if (net_present_value >= 0) {
+      paste("Nüüdispuhasväärtus (NPV): EUR", format(round(net_present_value, 2), big.mark = " ", scientific = FALSE))
+    } else {
+      paste("Nüüdispuhasväärtus (NPV): -EUR", format(round(abs(net_present_value), 2), big.mark = " ", scientific = FALSE))
+    }
+    cbr_text_es <- paste("Tulude ja kulude suhe: ", round(cost_benefit_ratio, 2))
+    
     # Choose the appropriate text based on the selected language
     if (lang_selected == "en") {
       result_text <- paste(npv_text_en, "\n", cbr_text_en)
@@ -996,6 +1083,8 @@ server <- function(input, output, session) {
       result_text <- paste(npv_text_fi, "\n", cbr_text_fi)
     } else if (lang_selected == "se") {
       result_text <- paste(npv_text_se, "\n", cbr_text_se)
+    } else if (lang_selected == "es") {
+      result_text <- paste(npv_text_es, "\n", cbr_text_es)
     }else {
       result_text <- "Language not supported"
     }
@@ -1023,7 +1112,7 @@ server <- function(input, output, session) {
   })
 
   # observeEvent(input$save, {
-
+#comment
     # Define a function to get the cost based on input$checkBuild
     get_cost <- function(checkBuild) {
       lang <- current_lang()  # Retrieve the actual list from the reactive expression
